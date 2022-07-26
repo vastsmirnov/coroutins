@@ -5,7 +5,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = module {
@@ -24,7 +23,6 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
     Retrofit.Builder().apply {
         baseUrl("https://zoo-animal-api.herokuapp.com")
         addConverterFactory(GsonConverterFactory.create())
-        addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         client(okHttpClient)
     }.build()
 
