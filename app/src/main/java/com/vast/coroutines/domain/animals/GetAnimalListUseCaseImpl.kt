@@ -1,9 +1,10 @@
 package com.vast.coroutines.domain.animals
 
-import io.reactivex.Single
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class GetAnimalListUseCaseImpl(private val animalRepository: AnimalRepository): GetAnimalListUseCase {
-    override fun execute(): Single<List<Animal>> {
-        return animalRepository.getList()
+    override suspend fun execute(): List<Animal> = withContext(Dispatchers.IO) {
+        return@withContext animalRepository.getList()
     }
 }
